@@ -1,0 +1,708 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body><title id="ttl">প্রয়োজন</title><meta id="vp" name="claude:viewport-fit-sides" content="cover"><link id="fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@500;700;800&amp;family=Hind+Siliguri:wght@400;500;600&amp;display=swap"><style id="css">
+/* Layout: one narrow column like a printed menu board. Name and tagline sit side by side, then delivery time and the open/closed lamp, then the dotted-leader menu, then shop choice and order form. A fixed bar carries the cart total. */
+:root {
+  --bg: #f3f5ef;
+  --surface: #ffffff;
+  --ink: #17241d;
+  --muted: #5a6a60;
+  --line: #dde3d8;
+  --accent: #1e6b47;
+  --accent-ink: #ffffff;
+  --turmeric: #e2a21b;
+  --turmeric-ink: #231800;
+  --danger: #b3261e;
+  --danger-ink: #ffffff;
+  --font-display: "Anek Bangla", "Hind Siliguri", "Noto Sans Bengali", system-ui, sans-serif;
+  --font-body: "Hind Siliguri", "Noto Sans Bengali", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101813; --surface: #18231c; --ink: #e8efe9; --muted: #9baaa0; --line: #2a382f;
+    --accent: #4dbb88; --accent-ink: #0b1a12; --turmeric: #f0b13a; --turmeric-ink: #231800; --danger: #ff8a80; --danger-ink: #3a0b08;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101813; --surface: #18231c; --ink: #e8efe9; --muted: #9baaa0; --line: #2a382f;
+  --accent: #4dbb88; --accent-ink: #0b1a12; --turmeric: #f0b13a; --turmeric-ink: #231800; --danger: #ff8a80; --danger-ink: #3a0b08;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+.wrap {
+  max-width: 640px; margin: 0 auto;
+  padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 120px;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.25; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--turmeric); outline-offset: 2px; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 12px; align-items: flex-start; padding-bottom: 18px; border-bottom: 3px double var(--line); }
+.brand { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.35em; font-size: clamp(1.5rem, 7vw, 2.1rem); font-weight: 800; }
+.brand .b1 { color: var(--accent); white-space: nowrap; }
+.brand .b2 { white-space: nowrap; }
+.head .sub { color: var(--muted); font-size: 0.95rem; margin-top: 4px; }
+.kicker { font-family: var(--font-display); font-weight: 700; color: var(--accent); font-size: 1rem; }
+.ghost { background: none; border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; min-height: 44px; color: var(--muted); }
+
+.hbtns { display: flex; gap: 8px; flex-wrap: wrap; }
+.rmsg { flex-basis: 100%; margin: 0; color: var(--muted); font-size: 0.95rem; }
+.status { margin-top: 14px; padding: 14px 16px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); display: grid; gap: 10px; }
+.status .eta { margin: 0; font-size: 1.05rem; }
+.status .eta b { font-family: var(--font-display); font-weight: 800; color: var(--accent); }
+.pill-open { display: inline-flex; align-items: center; gap: 8px; justify-self: start; background: var(--accent); color: var(--accent-ink); font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; min-height: 38px; padding: 4px 18px 4px 14px; border-radius: 999px; }
+.lamp { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-ink); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-ink) 35%, transparent); animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent-ink) 10%, transparent); } }
+@media (prefers-reduced-motion: reduce) { .lamp { animation: none; } }
+.status.closed { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 10%, var(--surface)); }
+.status.closed b { color: var(--danger); font-family: var(--font-display); font-size: 1.2rem; line-height: 1.4; }
+
+.trust { margin-top: 12px; padding: 12px 14px; background: var(--surface); border-left: 4px solid var(--accent); border-radius: 8px; font-size: 0.95rem; color: var(--muted); display: grid; gap: 2px; }
+.trust b { color: var(--ink); font-family: var(--font-display); }
+.items { list-style: none; margin: 0; padding: 0; }
+.item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: center; }
+.item .mid { min-width: 0; display: grid; gap: 4px; }
+.item .act { justify-self: end; }
+.item .top { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.item .name { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; overflow-wrap: anywhere; }
+.item .dots { flex: 1; border-bottom: 2px dotted var(--line); transform: translateY(-4px); min-width: 12px; }
+.item .price { font-family: var(--font-display); font-weight: 800; color: var(--accent); white-space: nowrap; }
+.item .desc { color: var(--muted); font-size: 0.95rem; overflow-wrap: anywhere; }
+.item.has-pic { grid-template-columns: 96px minmax(0, 1fr); align-items: start; }
+.item.has-pic .picbtn { grid-row: 1 / span 2; }
+.item.has-pic .act { grid-column: 2; justify-self: start; }
+.picbtn { padding: 0; border: 0; background: var(--line); border-radius: 12px; overflow: hidden; width: 96px; height: 96px; display: block; }
+.picbtn img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.item.off .name, .item.off .price { color: var(--muted); text-decoration: line-through; }
+.item.off .picbtn img { opacity: 0.5; filter: grayscale(1); }
+.tag-off { color: var(--danger); font-weight: 600; font-size: 0.9rem; }
+
+.add { background: var(--surface); border: 1.5px solid var(--accent); color: var(--accent); border-radius: 12px; min-height: 44px; padding: 6px 16px; font-weight: 600; }
+.add[disabled] { opacity: 0.4; cursor: not-allowed; }
+.stepper { display: inline-flex; align-items: center; border: 1.5px solid var(--accent); border-radius: 12px; background: var(--surface); }
+.stepper button { width: 44px; height: 44px; border: 0; background: none; color: var(--accent); font-size: 1.4rem; font-weight: 700; }
+.stepper output { min-width: 28px; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.zoom {
+  position: fixed; inset: 0; z-index: 50; background: rgba(8, 14, 10, 0.86); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  padding: calc(16px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.zoom img { max-width: 100%; max-height: 78vh; border-radius: 14px; display: block; }
+.zoom p { color: #fff; font-family: var(--font-display); font-weight: 700; margin: 0; text-align: center; }
+.zoom small { color: #cfd8d2; }
+
+.bar {
+  position: fixed; left: 0; right: 0; bottom: 0; background: var(--surface); border-top: 1px solid var(--line);
+  padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.bar-in { max-width: 640px; margin: 0 auto; display: flex; gap: 12px; align-items: center; justify-content: space-between; }
+.bar .sum { line-height: 1.3; }
+.bar .sum b { font-family: var(--font-display); font-size: 1.2rem; }
+.bar .sum span { color: var(--muted); font-size: 0.9rem; display: block; }
+.primary { background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 12px; min-height: 48px; padding: 8px 20px; font-weight: 600; font-family: var(--font-display); font-size: 1.05rem; }
+.primary[disabled] { opacity: 0.45; cursor: not-allowed; }
+.link-btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+.secondary { background: var(--surface); color: var(--ink); border: 1.5px solid var(--line); border-radius: 12px; min-height: 48px; padding: 8px 20px; font-weight: 600; }
+
+.shops { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+.shopbtn { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 60px; padding: 12px 16px; background: var(--surface); border: 1.5px solid var(--line); border-radius: 12px; text-align: left; }
+.shopbtn:hover { border-color: var(--accent); }
+.shopbtn .sn { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; overflow-wrap: anywhere; min-width: 0; }
+.shopbtn .go { color: var(--accent); font-size: 1.4rem; font-weight: 700; flex: none; }
+.shopline { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; padding: 8px 8px 8px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.shopline span { min-width: 0; overflow-wrap: anywhere; }
+.shopline b { font-family: var(--font-display); }
+
+.empty { color: var(--muted); padding: 28px 0; }
+.muted { color: var(--muted); margin: 6px 0 0; }
+.hint { color: var(--muted); font-size: 0.9rem; margin: 8px 0 0; }
+.sec { margin-top: 24px; }
+.sec h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+.lines { list-style: none; padding: 0; margin: 0; }
+.lines li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px dotted var(--line); }
+.lines li span:last-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.lines .total { font-weight: 700; font-family: var(--font-display); border-bottom: 0; font-size: 1.15rem; padding-top: 12px; }
+
+label.f { display: block; margin-top: 14px; font-weight: 500; }
+label.f small { color: var(--muted); font-weight: 400; }
+input[type="text"], input[type="tel"], input[type="number"], textarea {
+  width: 100%; margin-top: 6px; padding: 10px 12px; font-size: 16px; background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px;
+}
+textarea { min-height: 76px; resize: vertical; }
+.pay { display: grid; gap: 8px; margin-top: 8px; }
+.pay label { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--surface); min-height: 48px; }
+.pay input { width: 20px; height: 20px; accent-color: var(--accent); flex: none; }
+.pay label.sel { border-color: var(--accent); }
+.note { background: var(--surface); border-left: 4px solid var(--turmeric); border-radius: 8px; padding: 12px 14px; margin-top: 12px; }
+.note b { font-family: var(--font-display); }
+.copyline { display: flex; gap: 8px 10px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+.cashin { background: var(--turmeric); color: var(--turmeric-ink); font-family: var(--font-display); font-weight: 700; padding: 2px 12px; border-radius: 6px; }
+.mono { font-variant-numeric: tabular-nums; user-select: all; font-weight: 600; }
+.err { color: var(--danger); margin-top: 10px; font-weight: 500; }
+.ok { color: var(--accent); margin-top: 10px; font-weight: 500; }
+.info { color: var(--muted); margin-top: 10px; font-weight: 500; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+.row > * { flex: 1 1 160px; }
+.back { background: none; border: 0; color: var(--accent); font-weight: 600; padding: 8px 0; min-height: 44px; }
+
+.sw { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+.swb { min-height: 54px; border-radius: 12px; border: 2px solid; background: var(--surface); font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; }
+.swb.on-open { border-color: var(--accent); color: var(--accent); }
+.swb.on-open.act { background: var(--accent); color: var(--accent-ink); }
+.swb.on-close { border-color: var(--danger); color: var(--danger); }
+.swb.on-close.act { background: var(--danger); color: var(--danger-ink); }
+.two2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.srow { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
+.srow input { margin-top: 0; flex: 1; min-width: 0; }
+
+.arow { border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-top: 12px; background: var(--surface); }
+.arow .two { display: grid; grid-template-columns: minmax(0, 1fr) 110px; gap: 10px; }
+.arow label.chk { display: flex; align-items: center; gap: 8px; margin-top: 10px; min-height: 44px; }
+.arow label.chk input { width: 20px; height: 20px; accent-color: var(--accent); }
+.del { background: none; border: 0; color: var(--danger); font-weight: 600; min-height: 44px; padding: 0 4px; }
+.arow .foot { display: flex; justify-content: space-between; align-items: center; }
+.photo { display: flex; gap: 12px; align-items: center; margin-top: 14px; flex-wrap: wrap; }
+.thumb { width: 72px; height: 72px; border-radius: 10px; overflow: hidden; background: var(--line); flex: none; display: grid; place-items: center; color: var(--muted); font-size: 0.8rem; text-align: center; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo .pb { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; min-width: 0; }
+.photo label.pick { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 6px 14px; border: 1.5px solid var(--accent); color: var(--accent); border-radius: 12px; font-weight: 600; cursor: pointer; }
+.photo .hint { flex-basis: 100%; font-size: 0.85rem; margin: 0; }
+:root{--blue:#1565c0;--gold:#cc9a06}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--blue:#5aa9ff}}
+:root[data-theme="dark"]{--blue:#5aa9ff}
+.head{background:#12201a;border:0;border-radius:16px;padding:20px 16px;align-items:center}
+.brand .b1{color:var(--gold)}.brand .b2{color:#fff}
+.head .ghost{color:#fff;border-color:#ffffff66}
+.status{display:flex;align-items:center;gap:10px;padding:10px 14px}
+.lamp{width:16px;height:16px;border-radius:50%;flex:none;background:#22c55e;box-shadow:0 0 0 3px #22c55e55,0 0 12px #22c55e;animation:none}
+.lamp.red{background:#e53935;box-shadow:0 0 0 3px #e5393555,0 0 12px #e53935}
+.status .st{font-size:.95rem;font-weight:600}
+.status.closed .st{color:var(--danger)}
+.flow{margin-top:14px;border:2px solid var(--blue);border-radius:12px;padding:12px 14px;text-align:center;font-family:var(--font-display);font-weight:700;line-height:1.8;background:var(--surface)}
+.q{font-size:1.5rem;font-weight:800;margin-top:22px}
+.bidr{margin:6px 0 0;color:var(--muted)}
+.shopbtn.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
+.read{margin-top:28px;border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--surface)}
+.read h2{font-size:2.2rem;font-weight:800;color:var(--blue);margin:0 0 6px}
+.read p{margin:0}
+.eta-out{text-align:center;font-weight:600;margin:16px 0 0}
+.bigpay{width:100%;min-height:64px;margin-top:12px;border:2px solid var(--accent);border-radius:14px;background:var(--surface);font-family:var(--font-display);font-weight:800;font-size:1.3rem;color:var(--accent)}
+select{width:100%;margin-top:6px;padding:10px 12px;font-size:16px;background:var(--surface);border:1.5px solid var(--line);border-radius:10px}
+.sendm{font-family:var(--font-display);font-weight:700;font-size:1.1rem;margin:10px 0 0}
+.numbig{font-size:1.5rem}
+input[type="password"]{width:100%;margin-top:6px;padding:10px 12px;font-size:16px;background:var(--surface);border:1.5px solid var(--line);border-radius:10px}
+.topbtns{display:flex;justify-content:space-between;align-items:center;gap:8px}
+</style><script id="data" type="application/json">{"shop": "প্রয়োজন", "tag": "ব্যবহার করুন", "wa": "01718032630", "pay": "01718032630", "fee": 10, "open": true, "etaMin": 10, "etaMax": 15, "updated": "বৃহস্পতিবার, ৫ নভেম্বর", "v": 1793822040686, "shops": [{"id": "s1", "name": "আবু বকর হোটেল ( পশ্চিম কাউনিয়া )"}, {"id": "smw1ltp4t", "name": "মুসকান হোটেল  ( পশ্চিম কাউনিয়া )"}, {"id": "smw1lu2mz", "name": "সিয়াম হোটেল ( হাওলাদার সড়ক )"}], "items": [{"id": "i1", "name": "ভাত", "desc": "প্রতি পেলেট", "price": 10, "on": true, "sid": "", "img": ""}, {"id": "imw1c7631", "name": "মুরগী মাংস", "desc": "১ পিছ", "price": 40, "on": true, "sid": "smw1ltp4t", "img": ""}, {"id": "imw2jbk7p", "name": "ডাল,  মুরগী", "desc": "", "price": 1500, "on": true, "sid": "", "img": ""}]}</script><div id="app"></div><script id="code">
+(function () {
+  /* ===== অ্যাডমিন পাসওয়ার্ড =====
+     পাসওয়ার্ড এখানে লেখা নেই, শুধু তার হ্যাশ (একমুখী কোড) আছে। */
+  var PW_SALT = 'c6c4b35d2c8b6309e9644cac52b0bfcf';
+  var PW_HASH = '6a5a36a120621f2ca5dedfdab90af9a5f55bf5d03fab8dc1f3de7c7b0431ccb3';
+  var PW_ITER = 200000;
+
+  var bn =function (s) { return String(s).replace(/\d/g, function (d) { return '০১২৩৪৫৬৭৮৯'[d]; }); };
+  var money = function (n) { return '৳' + bn(n); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var months = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+  var days = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
+  function todayLabel() { var d = new Date(); return days[d.getDay()] + ', ' + bn(d.getDate()) + ' ' + months[d.getMonth()]; }
+  var imgSrc = function (id) { return id && String(id).indexOf('data:image/') === 0 ? id : ''; };
+  var newId = function () { return Date.now().toString(36).slice(-5).toUpperCase(); };
+
+  /* Older saved menus lack the newer fields, so fill them in. */
+  function norm(d) {
+    d = d || {};
+    var o = {
+      shop: d.shop != null ? d.shop : 'প্রয়োজন',
+      tag: d.tag != null ? d.tag : 'ব্যবহার করুন',
+      wa: d.wa || '', pay: d.pay || '', fee: Number(d.fee) || 0,
+      open: d.open !== false,
+      etaMin: d.etaMin != null ? Number(d.etaMin) || 0 : 10,
+      etaMax: d.etaMax != null ? Number(d.etaMax) || 0 : 15,
+      updated: d.updated || '', v: Number(d.v) || 0,
+      items: Array.isArray(d.items) ? d.items : []
+    };
+    o.shops = Array.isArray(d.shops) ? d.shops : (o.shop ? [{ id: 's1', name: o.shop }] : []);
+    return o;
+  }
+
+  var DATA;
+  try { DATA = norm(JSON.parse(document.getElementById('data').textContent)); } catch (e) { DATA = norm({ shop: 'আপনার দোকানের নাম' }); }
+
+  var app = document.getElementById('app');
+  var state = { view: 'menu', cart: {}, owner: false, canImg: false, zoom: null, shop: null, oid: '', form: { name: '', phone: '', addr: '', note: '', method: 'cod', trx: '' }, err: '', order: null, draft: null, adminMsg: '', adminKind: 'err', refreshing: false, rmsg: '', lmsg: '', lbusy: false };
+  var CODE_V = 2, rTimer = null;
+  var A = null, ASSETS = null, focusSel = null, lastCheck = 0;
+
+  try { var saved = JSON.parse(localStorage.getItem('menu-cust') || '{}'); ['name', 'phone', 'addr'].forEach(function (k) { if (saved[k]) state.form[k] = saved[k]; }); } catch (e) {}
+
+  function normPhone(p) {
+    var d = String(p).replace(/[০-৯]/g, function (c) { return '০১২৩৪৫৬৭৮৯'.indexOf(c); }).replace(/\D/g, '');
+    if (d.indexOf('880') === 0) d = d.slice(2);
+    if (d.length === 10 && d[0] === '1') d = '0' + d;
+    return d;
+  }
+  var validBD = function (d) { return /^01[3-9]\d{8}$/.test(d); };
+  function waNum(p) { var d = normPhone(p); return validBD(d) ? '88' + d : String(p).replace(/\D/g, ''); }
+
+  function etaRange(min, max) {
+    min = Number(min) || 0; max = Number(max) || 0;
+    if (min <= 0 && max <= 0) return '';
+    if (min <= 0) min = max;
+    if (max <= 0 || max < min) max = min;
+    return min === max ? bn(min) + ' মিনিট' : bn(min) + '/' + bn(max) + ' মিনিট';
+  }
+  function etaSentence(min, max) {
+    var r = etaRange(min, max);
+    return r ? 'খাবার পৌঁছাতে আনুমানিক ' + r + ' সময় লাগবে' : '';
+  }
+  function shopById(id) { return DATA.shops.filter(function (s) { return s.id === id; })[0] || null; }
+
+  function cartLines() {
+    return DATA.items.filter(function (it) { return it.on && state.cart[it.id] > 0; }).map(function (it) { return { it: it, q: state.cart[it.id] }; });
+  }
+  function totals() {
+    var lines = cartLines(), cnt = 0, sub = 0;
+    lines.forEach(function (l) { cnt += l.q; sub += l.q * l.it.price; });
+    var fee = lines.length ? Number(DATA.fee) || 0 : 0;
+    return { lines: lines, cnt: cnt, sub: sub, fee: fee, total: sub + fee };
+  }
+
+  function head() {
+    return '<header class="head"><h1 class="brand"><span class="b1">' + esc(DATA.shop) + '</span>' + (DATA.tag ? '<span class="b2">' + esc(DATA.tag) + '</span>' : '') + '</h1>' +
+      '<div class="hbtns"><button class="ghost" data-act="refresh"' + (state.refreshing ? ' disabled' : '') + '>' + (state.refreshing ? 'আপডেট হচ্ছে...' : '🔄 রিফ্রেশ') + '</button>' +
+      (state.owner ? '<button class="ghost" data-act="admin">মেনু সম্পাদনা</button>' : '') + '</div>' +
+      (state.rmsg ? '<p class="rmsg" role="status">' + esc(state.rmsg) + '</p>' : '') + '</header>';
+  }
+
+  function statusBlock() {
+    return DATA.open
+      ? '<div class="status" role="status"><span class="lamp" aria-hidden="true"></span><span class="st">এখন অর্ডার করতে পারেন</span></div>'
+      : '<div class="status closed" role="status"><span class="lamp red" aria-hidden="true"></span><span class="st">এখন বন্ধ রয়েছে, দয়া করে অপেক্ষা করুন</span></div>';
+  }
+
+  function itemRow(it) {
+    var open = DATA.open, q = state.cart[it.id] || 0, act;
+    if (!it.on) act = '<span class="tag-off">আজ নেই</span>';
+    else if (!open) act = '<button class="add" disabled>যোগ করুন</button>';
+    else if (q > 0) act = '<div class="stepper"><button data-act="dec" data-id="' + it.id + '" aria-label="কমান">−</button><output>' + bn(q) + '</output><button data-act="inc" data-id="' + it.id + '" aria-label="বাড়ান">+</button></div>';
+    else act = '<button class="add" data-act="inc" data-id="' + it.id + '">যোগ করুন</button>';
+    var pic = it.img ? '<button class="picbtn" data-act="zoom" data-id="' + esc(it.id) + '" aria-label="' + esc(it.name) + ' এর ছবি বড় করে দেখুন"><img src="' + esc(imgSrc(it.img)) + '" alt="' + esc(it.name) + '" width="96" height="96" loading="lazy" decoding="async"></button>' : '';
+    return '<li class="item' + (it.on ? '' : ' off') + (it.img ? ' has-pic' : '') + '">' + pic + '<div class="mid"><div class="top"><span class="name">' + esc(it.name) + '</span><span class="dots"></span><span class="price">' + money(it.price) + '</span></div>' +
+      (it.desc ? '<div class="desc">' + esc(it.desc) + '</div>' : '') + '</div><div class="act">' + act + '</div></li>';
+  }
+
+  function menuView() {
+    var t = totals(), open = DATA.open, needShop = DATA.shops.length > 0, showMenu = !needShop || !!state.shop;
+    var items = DATA.items.filter(function (it) { return !needShop || !it.sid || it.sid === state.shop; });
+    var shops = needShop ? '<ul class="shops">' + DATA.shops.map(function (s) {
+      var on = s.id === state.shop;
+      return '<li><button class="shopbtn' + (on ? ' sel' : '') + '" data-act="pickshop" data-id="' + esc(s.id) + '" aria-pressed="' + on + '"><span class="sn">' + esc(s.name) + '</span><span class="go" aria-hidden="true">' + (on ? '✓' : '→') + '</span></button></li>';
+    }).join('') + '</ul>' : '';
+    var list = showMenu ? '<div id="menu-sec"><h2 class="q">কি খাবেন?</h2>' + (items.length ? '<ul class="items">' + items.map(itemRow).join('') + '</ul>' : '<p class="empty">এই দোকানের মেনু এখনো দেওয়া হয়নি।</p>') + '</div>' : '';
+    var fee = Number(DATA.fee) > 0 ? 'বি:দ্র: ডেলিভারি চার্জ মাত্র ' + bn(DATA.fee) + ' টাকা' : 'বি:দ্র: ডেলিভারি চার্জ নেই';
+    var read = '<div class="read"><h2>পড়ুন</h2><p>দোকান সিলেক্ট করলে আপনার সামনে খাবার মেনু আসবে, তারপর সেখান থেকে খাবার সিলেক্ট করে সরাসরি অর্ডার বাটন এ ক্লিক করুন, অর্ডারটি সরাসরি WhatsApp ওপেন করে সেন্ড করে পাঠিয়ে দিন</p></div>';
+    var es = etaSentence(DATA.etaMin, DATA.etaMax);
+    var bar = showMenu ? '<div class="bar"><div class="bar-in"><div class="sum"><b>' + money(t.sub) + '</b><span>' + (!open ? 'এখন অর্ডার নেওয়া হচ্ছে না' : (t.cnt ? bn(t.cnt) + ' পিস · অর্ডার বাটন চাপুন' : 'কিছু নির্বাচন করুন')) + '</span></div>' +
+      '<button class="primary" data-act="checkout"' + (t.cnt && open ? '' : ' disabled') + '>' + (open ? 'অর্ডার করুন' : 'অর্ডার বন্ধ') + '</button></div></div>' : '';
+    var zoom = '';
+    if (state.zoom) {
+      var zi = DATA.items.filter(function (x) { return x.id === state.zoom; })[0];
+      if (zi && zi.img) zoom = '<div class="zoom" data-act="unzoom" role="dialog" aria-label="খাবারের ছবি"><img src="' + esc(imgSrc(zi.img)) + '" alt="' + esc(zi.name) + '"><p>' + esc(zi.name) + ' · ' + money(zi.price) + '</p><small>বন্ধ করতে যেকোনো জায়গায় চাপুন</small></div>';
+    }
+    return '<div class="wrap">' + head() + statusBlock() + '<div class="flow">দোকান → মেনু → অর্ডার → Whatsapp → Send → অর্ডার সম্পূর্ণ হয়েছে</div>' +
+      '<h2 class="q">কোন হোটেল থেকে খেতে চান ?</h2><p class="bidr">' + fee + '</p>' + shops + list + read + (es ? '<p class="eta-out">' + es + '</p>' : '') + '</div>' + bar + zoom;
+  }
+
+  function payView() {
+    var t = totals();
+    return '<div class="wrap"><button class="back" data-act="back">← মেনুতে ফিরুন</button><h2 class="q" style="margin-top:8px">পেমেন্ট কীভাবে করবেন?</h2><p class="muted">মোট ' + money(t.total) + ' (ডেলিভারি চার্জ সহ)</p>' +
+      '<button class="bigpay" data-act="paycod">ক্যাশ অন ডেলিভারি?</button><button class="bigpay" data-act="payadv">অনলাইন পেমেন্ট?</button></div>';
+  }
+
+  
+function buildMsg(o) {
+    var L = ['নতুন অর্ডার #' + o.id];
+    if (o.shop) L.push('দোকান: ' + o.shop);
+    L.push('নাম: ' + o.name, 'ফোন: ' + bn(o.phone), 'ঠিকানা: ' + o.addr, '', 'আইটেম:');
+    o.lines.forEach(function (l) { L.push(bn(l.q) + ' × ' + l.it.name + ' = ' + money(l.q * l.it.price)); });
+    L.push('', 'সাবটোটাল: ' + money(o.sub), 'ডেলিভারি: ' + money(o.fee), 'মোট: ' + money(o.total));
+    L.push('পেমেন্ট: ' + (o.method === 'adv' ? 'অগ্রিম (TrxID: ' + o.trx + ')' : 'ক্যাশ অন ডেলিভারি'));
+    if (o.note) L.push('নোট: ' + o.note);
+    return L.join('\n');
+  }
+  function makeOrder() {
+    var f = state.form, t = totals(), sh = shopById(state.shop);
+    return { id: state.oid, shop: sh ? sh.name : '', name: f.name.trim(), phone: normPhone(f.phone), addr: f.addr.trim(), note: f.note.trim(),
+      method: (f.method === 'adv' && DATA.pay) ? 'adv' : 'cod', trx: f.trx.trim(), lines: t.lines, sub: t.sub, fee: t.fee, total: t.total };
+  }
+  function waLink(o) { var num = waNum(DATA.wa); return num ? 'https://wa.me/' + num + '?text=' + encodeURIComponent(buildMsg(o)) : ''; }
+
+  function checkoutView() {
+    var t = totals(), f = state.form, sh = shopById(state.shop), advOk = !!DATA.pay, isAdv = f.method === 'adv' && advOk;
+    var lines = t.lines.map(function (l) { return '<li><span>' + bn(l.q) + ' × ' + esc(l.it.name) + '</span><span>' + money(l.q * l.it.price) + '</span></li>'; }).join('');
+    var payLine = '<div class="shopline"><span>পেমেন্ট: <b>' + (isAdv ? 'অনলাইন পেমেন্ট' : 'ক্যাশ অন ডেলিভারি') + '</b></span>' + (advOk ? '<button class="ghost" data-act="topay">বদলান</button>' : '') + '</div>';
+    var adv = isAdv ? '<div class="note"><b>অনলাইন পেমেন্ট</b> (বিকাশ / নগদ)<div class="copyline"><span class="mono numbig">' + esc(bn(DATA.pay)) + '</span><button class="ghost" data-act="copypay">কপি</button></div>' +
+      '<p class="sendm">সেন্ড মানি করুন</p><p style="margin:0">মোট ' + money(t.total) + '</p></div>' +
+      '<label class="f" for="f-trx">ট্রান্জজেকশন আইডি দিন :<input id="f-trx" type="text" autocomplete="off" value="' + esc(f.trx) + '"></label>' : '';
+    var shopLine = sh ? '<div class="shopline"><span>দোকান: <b>' + esc(sh.name) + '</b></span><button class="ghost" data-act="changeshop">বদলান</button></div>' : '';
+    return '<div class="wrap"><button class="back" data-act="back">← মেনুতে ফিরুন</button><h2 style="font-size:1.6rem;font-weight:800">আপনার অর্ডার</h2>' + shopLine +
+      '<div class="sec"><ul class="lines">' + lines + '<li><span>ডেলিভারি চার্জ</span><span>' + money(t.fee) + '</span></li><li class="total"><span>মোট</span><span>' + money(t.total) + '</span></li></ul></div>' +
+      '<div class="sec"><h2>আপনার তথ্য</h2>' +
+      '<label class="f" for="f-name">নাম<input id="f-name" type="text" autocomplete="name" value="' + esc(f.name) + '"></label>' +
+      '<label class="f" for="f-phone">মোবাইল নম্বর<input id="f-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX" value="' + esc(f.phone) + '"></label>' +
+      '<label class="f" for="f-addr">ডেলিভারির ঠিকানা<textarea id="f-addr" autocomplete="street-address">' + esc(f.addr) + '</textarea></label>' +
+      '<label class="f" for="f-note">নোট <small>(ঐচ্ছিক)</small><input id="f-note" type="text" value="' + esc(f.note) + '"></label></div>' +
+      '<div class="sec"><h2>পেমেন্ট</h2>' + payLine + adv + '</div>' +
+      (state.err ? '<p class="err" role="alert">' + esc(state.err) + '</p>' : '') +
+      '<div class="row"><a id="confirm" class="primary link-btn" data-act="submit" href="' + esc(waLink(makeOrder()) || '#') + '" target="_blank" rel="noopener">WhatsApp এ অর্ডার পাঠান</a></div>' +
+      '<p class="hint">চাপলে WhatsApp খুলবে এবং অর্ডারের মেসেজ তৈরি থাকবে। শুধু Send চাপুন।</p></div>';
+  }
+
+  
+function doneView() {
+    var o = state.order, msg = buildMsg(o), link = waLink(o);
+    return '<div class="wrap"><header class="head"><div><div class="kicker">অর্ডার কনফার্ম হয়েছে</div><h1 class="brand"><span class="b1">#' + esc(o.id) + '</span></h1><div class="sub">' + (o.shop ? esc(o.shop) + ' · ' : '') + 'মোট ' + money(o.total) + ' · ' + (o.method === 'adv' ? 'অগ্রিম পেমেন্ট' : 'ক্যাশ অন ডেলিভারি') + '</div></div></header>' +
+      '<div class="note"><b>WhatsApp-এ Send চাপুন।</b><br>মেসেজ তৈরি করা আছে। Send করলেই অর্ডার দোকানে পৌঁছাবে।' + (etaSentence(DATA.etaMin, DATA.etaMax) ? '<br>' + etaSentence(DATA.etaMin, DATA.etaMax) + '।' : '') + '</div>' +
+      '<div class="row">' + (link ? '<a class="primary link-btn" href="' + esc(link) + '" target="_blank" rel="noopener">WhatsApp খোলেনি? এখানে চাপুন</a>' : '<p class="err">দোকানের WhatsApp নম্বর এখনো সেট করা হয়নি। নিচের মেসেজ কপি করে দোকানে পাঠান।</p>') +
+      '<button class="secondary" data-act="copymsg">মেসেজ কপি করুন</button></div>' +
+      '<div class="sec"><h2>আপনার অর্ডার</h2><ul class="lines">' + o.lines.map(function (l) { return '<li><span>' + bn(l.q) + ' × ' + esc(l.it.name) + '</span><span>' + money(l.q * l.it.price) + '</span></li>'; }).join('') + '</ul>' +
+      '<p style="color:var(--muted);white-space:pre-wrap;margin-top:12px" id="msgtxt">' + esc(msg) + '</p></div>' +
+      '<div class="row"><button class="ghost" data-act="newOrder">নতুন অর্ডার করুন</button></div></div>';
+  }
+
+  function adminView() {
+    var d = state.draft, isOpen = d.open !== false;
+    var rows = d.items.map(function (it, i) {
+      var thumb = it.img ? '<img src="' + esc(imgSrc(it.img)) + '" alt="">' : 'ছবি নেই';
+      var photo = state.canImg
+        ? '<div class="photo"><div class="thumb">' + thumb + '</div><div class="pb"><label class="pick" for="a-file-' + i + '">' + (it.img ? 'ছবি বদলান' : 'ছবি যোগ করুন') + '</label><input type="file" id="a-file-' + i + '" class="a-file vh" data-i="' + i + '" accept="image/*">' +
+          (it.img ? '<button class="del" data-act="aimgdel" data-i="' + i + '">ছবি সরান</button>' : '') + '</div></div>'
+        : '<div class="photo"><div class="thumb">' + thumb + '</div><span class="hint">ছবি আপলোড এই ভিউতে চালু নেই। মালিকের অ্যাকাউন্টে সাইন-ইন করা অবস্থায় পেজটি খুলুন।</span></div>';
+      var sidSel = '<label class="f">কোন দোকানের খাবার<select class="a-sid"><option value="">সব দোকান</option>' + d.shops.map(function (s) { return '<option value="' + esc(s.id) + '"' + (it.sid === s.id ? ' selected' : '') + '>' + esc(s.name || 'নাম নেই') + '</option>'; }).join('') + '</select></label>';
+      return '<div class="arow" data-i="' + i + '"><label class="f" style="margin-top:0">খাবারের নাম<input type="text" class="a-name" value="' + esc(it.name) + '"></label>' +
+        '<div class="two"><label class="f">বিবরণ<input type="text" class="a-desc" value="' + esc(it.desc) + '"></label><label class="f">দাম (৳)<input type="number" inputmode="numeric" min="0" class="a-price" value="' + esc(it.price) + '"></label></div>' +
+        sidSel + photo +
+        '<div class="foot"><label class="chk"><input type="checkbox" class="a-on"' + (it.on ? ' checked' : '') + '> আজ পাওয়া যাবে</label><button class="del" data-act="adel" data-i="' + i + '">মুছুন</button></div></div>';
+    }).join('');
+    var shopRows = d.shops.map(function (s, i) {
+      return '<div class="srow" data-i="' + i + '"><input type="text" class="s-name" aria-label="দোকানের নাম" placeholder="দোকানের নাম" value="' + esc(s.name) + '"><button class="del" data-act="asdel" data-i="' + i + '">মুছুন</button></div>';
+    }).join('');
+    return '<div class="wrap"><div class="topbtns"><button class="back" data-act="aback">← বাতিল করে ফিরুন</button><button class="ghost" data-act="alogout">লগআউট</button></div><h2 style="font-size:1.6rem;font-weight:800">মেনু সম্পাদনা</h2>' +
+      '<div class="sec"><h2>অর্ডার সুইচ</h2>' +
+      '<div class="sw" role="group" aria-label="অর্ডার সুইচ"><button type="button" class="swb on-open' + (isOpen ? ' act' : '') + '" data-act="aopen" aria-pressed="' + isOpen + '">খোলা</button><button type="button" class="swb on-close' + (!isOpen ? ' act' : '') + '" data-act="aclose" aria-pressed="' + !isOpen + '">বন্ধ</button></div>' +
+      '<p class="hint">বন্ধ করলে কাস্টমারের পেজে লাল বাতি ও "এখন বন্ধ রয়েছে, দয়া করে অপেক্ষা করুন" লেখা দেখাবে এবং অর্ডার করা যাবে না। বদলানোর পর নিচে "প্রকাশ করুন" চাপুন।</p></div>' +
+      '<div class="sec"><h2>ডেলিভারির সময়</h2><div class="two2">' +
+      '<label class="f" for="a-emin" style="margin-top:0">কম সময় (মিনিট)<input id="a-emin" type="number" inputmode="numeric" min="0" value="' + esc(d.etaMin) + '"></label>' +
+      '<label class="f" for="a-emax" style="margin-top:0">বেশি সময় (মিনিট)<input id="a-emax" type="number" inputmode="numeric" min="0" value="' + esc(d.etaMax) + '"></label></div>' +
+      '<p class="hint" id="eta-prev">' + esc(etaSentence(d.etaMin, d.etaMax) || 'সময় দেখানো হবে না') + '</p></div>' +
+      '<div class="sec"><h2>পেজের নাম</h2>' +
+      '<div class="two2"><label class="f" for="a-shop" style="margin-top:0">নাম<input id="a-shop" type="text" value="' + esc(d.shop) + '"></label>' +
+      '<label class="f" for="a-tag" style="margin-top:0">পাশের লেখা<input id="a-tag" type="text" value="' + esc(d.tag) + '"></label></div>' +
+      '<p class="hint">দুটো পাশাপাশি এক লাইনে দেখাবে।</p></div>' +
+      '<div class="sec"><h2>দোকানের তালিকা</h2><p class="hint" style="margin-top:0">কাস্টমার প্রথমে এখান থেকে দোকান বাছাই করবে। প্রতিটি খাবারে কোন দোকানের তা ঠিক করে দিন।</p>' + shopRows +
+      '<div class="row"><button class="secondary" data-act="asadd">+ দোকান যোগ করুন</button></div></div>' +
+      '<div class="sec"><h2>যোগাযোগ ও পেমেন্ট</h2>' +
+      '<label class="f" for="a-wa">WhatsApp নম্বর <small>(অর্ডার এই নম্বরে আসবে)</small><input id="a-wa" type="tel" inputmode="tel" placeholder="01XXXXXXXXX" value="' + esc(d.wa) + '"></label>' +
+      '<label class="f" for="a-pay">বিকাশ / নগদ নম্বর <small>(অগ্রিম পেমেন্টের জন্য, না দিলে শুধু ক্যাশ অন ডেলিভারি থাকবে)</small><input id="a-pay" type="tel" inputmode="tel" value="' + esc(d.pay) + '"></label>' +
+      '<label class="f" for="a-fee">ডেলিভারি চার্জ (৳)<input id="a-fee" type="number" inputmode="numeric" min="0" value="' + esc(d.fee) + '"></label></div>' +
+      '<div class="sec"><h2>আজকের খাবার</h2>' + rows + '<div class="row"><button class="secondary" data-act="aadd">+ নতুন খাবার যোগ করুন</button></div></div>' +
+      (state.adminMsg ? '<p class="' + esc(state.adminKind) + '" role="status">' + esc(state.adminMsg) + '</p>' : '') +
+      '<div class="row"><button class="primary" data-act="apublish">মেনু ফাইল তৈরি করুন</button></div>' +
+      '<p style="color:var(--muted);font-size:0.9rem">প্রকাশ করলে কাস্টমারের লিংক ও QR কোডে নতুন মেনু আর ছবি দেখাবে। লিংক বা QR বদলাতে হবে না। ছবি যোগ করার পর অবশ্যই "প্রকাশ করুন" চাপুন।</p></div>';
+  }
+
+  /* Admin sign-in screen. The editor is not shown until the password is right. */
+  function loginView() {
+    return '<div class="wrap"><button class="back" data-act="lback">← কাস্টমার পেজে ফিরুন</button><h2 style="font-size:1.6rem;font-weight:800">অ্যাডমিন লগইন</h2>' +
+      '<label class="f" for="l-pass">পাসওয়ার্ড<input id="l-pass" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false"></label>' +
+      (state.lmsg ? '<p class="err" role="alert">' + esc(state.lmsg) + '</p>' : '') +
+      '<div class="row"><button class="primary" data-act="llogin"' + (state.lbusy ? ' disabled' : '') + '>' + (state.lbusy ? 'যাচাই হচ্ছে...' : 'লগইন') + '</button></div></div>';
+  }
+
+  function render() {
+    app.innerHTML = state.view === 'menu' ? menuView() : state.view === 'pay' ? payView() : state.view === 'checkout' ? checkoutView() : state.view === 'done' ? doneView() : state.view === 'login' ? loginView() : adminView();
+    if (focusSel) { var el = app.querySelector(focusSel); if (el) el.focus(); focusSel = null; }
+  }
+  function setAdmin(msg, kind) { state.adminMsg = msg; state.adminKind = kind; render(); }
+
+  function readForm() {
+    var g = function (id) { var e = document.getElementById(id); return e ? e.value : null; };
+    var f = state.form;
+    if (g('f-name') !== null) f.name = g('f-name');
+    if (g('f-phone') !== null) f.phone = g('f-phone');
+    if (g('f-addr') !== null) f.addr = g('f-addr');
+    if (g('f-note') !== null) f.note = g('f-note');
+    if (g('f-trx') !== null) f.trx = g('f-trx');
+  }
+
+  function syncAdmin() {
+    var d = state.draft, g = function (id) { var e = document.getElementById(id); return e ? e.value : ''; };
+    d.shop = g('a-shop'); d.tag = g('a-tag'); d.wa = g('a-wa'); d.pay = g('a-pay'); d.fee = Number(g('a-fee')) || 0;
+    d.etaMin = Number(g('a-emin')) || 0; d.etaMax = Number(g('a-emax')) || 0;
+    app.querySelectorAll('.srow').forEach(function (r) {
+      var s = d.shops[Number(r.getAttribute('data-i'))];
+      if (s) s.name = r.querySelector('.s-name').value;
+    });
+    app.querySelectorAll('.arow').forEach(function (r) {
+      var it = d.items[Number(r.getAttribute('data-i'))];
+      if (!it) return;
+      it.name = r.querySelector('.a-name').value; it.desc = r.querySelector('.a-desc').value;
+      it.price = Number(r.querySelector('.a-price').value) || 0; it.on = r.querySelector('.a-on').checked; it.sid = r.querySelector('.a-sid').value;
+    });
+  }
+
+  function copy(text, done) {
+    var fallback = function () { var n = document.getElementById('msgtxt'); if (n) { var r = document.createRange(); r.selectNodeContents(n); var s = getSelection(); s.removeAllRanges(); s.addRange(r); } };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  }
+
+  /* Shrink a phone photo to about 900px JPEG so the menu loads fast on mobile data. */
+  function shrink(file, max, q) {
+    return new Promise(function (res, rej) {
+      var url = URL.createObjectURL(file), im = new Image();
+      im.onload = function () {
+        var s = Math.min(1, max / Math.max(im.naturalWidth, im.naturalHeight));
+        var w = Math.max(1, Math.round(im.naturalWidth * s)), h = Math.max(1, Math.round(im.naturalHeight * s));
+        var c = document.createElement('canvas'); c.width = w; c.height = h;
+        var x = c.getContext('2d'); x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, h); x.drawImage(im, 0, 0, w, h);
+        URL.revokeObjectURL(url);
+        c.toBlob(function (b) { b ? res(b) : rej(new Error('blob')); }, 'image/jpeg', q);
+      };
+      im.onerror = function () { URL.revokeObjectURL(url); rej(new Error('img')); };
+      im.src = url;
+    });
+  }
+  function imgErr(e) {
+    var c = e && e.code;
+    if (c === 'quota_or_state') return 'ছবি রাখার জায়গা শেষ। কিছু পুরনো ছবি সরিয়ে আবার চেষ্টা করুন।';
+    if (c === 'rate_limited') return 'একসাথে অনেক ছবি দেওয়া হয়েছে। কিছুক্ষণ পর আবার চেষ্টা করুন।';
+    if (c === 'not_granted' || c === 'capability_disabled' || c === 'capability_removed') return 'এই ভিউতে ছবি আপলোড করা যাচ্ছে না। মালিকের অ্যাকাউন্টে পেজটি খুলুন।';
+    if (e && e.message === 'img') return 'এই ছবিটি পড়া যায়নি। JPG বা PNG ছবি বেছে নিন।';
+    return 'ছবি আপলোড হয়নি। আবার চেষ্টা করুন।';
+  }
+
+  function buildDoc(data) {
+    var d = document.getElementById('data').cloneNode(true);
+    d.textContent = JSON.stringify(data).replace(/</g, '\\u003c');
+    var rs = document.head.querySelector('style');
+    var body = document.getElementById('ttl').outerHTML + document.getElementById('vp').outerHTML + document.getElementById('fonts').outerHTML +
+      document.getElementById('css').outerHTML + d.outerHTML + '<div id="app"></div>' + document.getElementById('code').outerHTML;
+    return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>' + (rs ? rs.textContent : '') + '</style></head><body>' + body + '</body></html>';
+  }
+
+  async function publish() {
+    syncAdmin();
+    var d = state.draft;
+    var emin = Math.max(0, Math.round(d.etaMin)), emax = Math.max(0, Math.round(d.etaMax));
+    if (emax < emin) emax = emin;
+    var data = { shop: d.shop.trim() || 'আপনার দোকানের নাম', tag: d.tag.trim(), wa: d.wa.trim(), pay: d.pay.trim(), fee: d.fee, open: d.open !== false, etaMin: emin, etaMax: emax, updated: todayLabel(), v: Date.now(),
+      shops: d.shops.filter(function (s) { return s.name.trim(); }).map(function (s) { return { id: s.id, name: s.name.trim() }; }),
+      items: d.items.filter(function (it) { return it.name.trim() && it.price > 0; }).map(function (it) { return { id: it.id, name: it.name.trim(), desc: it.desc.trim(), price: it.price, on: !!it.on, sid: it.sid || '', img: it.img || '' }; }) };
+    if (data.wa && !validBD(normPhone(data.wa)) && waNum(data.wa).length < 10) { setAdmin('WhatsApp নম্বরটি সঠিক নয়। 01XXXXXXXXX ফরম্যাটে দিন।', 'err'); return; }
+    try {
+      var blob = new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' });
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'menu.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      DATA = norm(data);
+      setAdmin('menu.json ফাইল ডাউনলোড হয়েছে। এটি হোস্টিংয়ে আপলোড করলে কাস্টমাররা নতুন মেনু দেখবে।', 'ok');
+    } catch (e) { setAdmin('ফাইল তৈরি করা যায়নি। আবার চেষ্টা করুন।', 'err'); }
+  }
+
+  function startCheckout() {
+    if (!state.oid) state.oid = newId();
+    state.view = 'checkout'; state.err = ''; window.scrollTo(0, 0); render();
+  }
+
+  /* The confirm button is a real link to WhatsApp, so one tap validates and opens the chat with the order text filled in. */
+  function submit(e, a) {
+    readForm();
+    var f = state.form, t = totals(), ph = normPhone(f.phone);
+    var fail = function (m) { e.preventDefault(); state.err = m; render(); };
+    if (!DATA.open) return fail('এখন খাবার ডেলিভারি দেওয়ার বন্ধ রয়েছে।');
+    if (!t.cnt) return fail('আগে খাবার নির্বাচন করুন।');
+    if (DATA.shops.length && !shopById(state.shop)) return fail('দোকান নির্বাচন করুন।');
+    if (!f.name.trim()) return fail('আপনার নাম লিখুন।');
+    if (!validBD(ph)) return fail('মোবাইল নম্বরটি সঠিক নয়। 01XXXXXXXXX ফরম্যাটে দিন।');
+    if (!f.addr.trim()) return fail('ডেলিভারির ঠিকানা লিখুন।');
+    var method = (f.method === 'adv' && DATA.pay) ? 'adv' : 'cod';
+    if (method === 'adv' && f.trx.trim().length < 6) return fail('পেমেন্টের ট্রানজেকশন আইডি (TrxID) লিখুন।');
+    try { localStorage.setItem('menu-cust', JSON.stringify({ name: f.name, phone: f.phone, addr: f.addr })); } catch (er) {}
+    var o = makeOrder(); state.order = o;
+    var link = waLink(o);
+    if (link) a.href = link; else e.preventDefault();
+    state.err = ''; state.view = 'done';
+    setTimeout(function () { window.scrollTo(0, 0); render(); }, 250);
+  }
+
+  function refreshLink() {
+    var a = document.getElementById('confirm');
+    if (!a) return;
+    readForm();
+    var l = waLink(makeOrder());
+    if (l) a.href = l;
+  }
+
+  app.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-act]'); if (!b) return;
+    var act = b.getAttribute('data-act'), id = b.getAttribute('data-id');
+    if (act === 'inc') { if (!DATA.open) return; state.cart[id] = (state.cart[id] || 0) + 1; focusSel = '[data-act="inc"][data-id="' + id + '"]'; render(); }
+    else if (act === 'dec') { state.cart[id] = Math.max(0, (state.cart[id] || 0) - 1); focusSel = state.cart[id] ? '[data-act="dec"][data-id="' + id + '"]' : '[data-act="inc"][data-id="' + id + '"]'; render(); }
+    else if (act === 'zoom') { state.zoom = id; render(); }
+    else if (act === 'unzoom') { state.zoom = null; render(); }
+    else if (act === 'checkout') {
+      if (!DATA.open) return;
+      if (DATA.pay) { state.view = 'pay'; window.scrollTo(0, 0); render(); } else { state.form.method = 'cod'; startCheckout(); }
+    }
+    else if (act === 'pickshop') { state.shop = id; state.zoom = null; render(); var ms = document.getElementById('menu-sec'); if (ms) ms.scrollIntoView(); }
+    else if (act === 'paycod') { state.form.method = 'cod'; startCheckout(); }
+    else if (act === 'payadv') { state.form.method = 'adv'; startCheckout(); }
+    else if (act === 'topay') { readForm(); state.view = 'pay'; window.scrollTo(0, 0); render(); }
+    else if (act === 'tomenu') { state.view = 'menu'; window.scrollTo(0, 0); render(); }
+    else if (act === 'changeshop') { readForm(); state.view = 'menu'; window.scrollTo(0, 0); render(); }
+    else if (act === 'back') { readForm(); state.view = 'menu'; render(); }
+    else if (act === 'submit') submit(e, b);
+    else if (act === 'newOrder') { state.cart = {}; state.order = null; state.oid = ''; state.shop = null; state.form.trx = ''; state.form.note = ''; state.view = 'menu'; window.scrollTo(0, 0); render(); }
+    else if (act === 'copymsg') { var o = state.order; copy(buildMsg(o), function () { b.textContent = 'কপি হয়েছে'; }); }
+    else if (act === 'copypay') { copy(DATA.pay, function () { b.textContent = 'কপি হয়েছে'; }); }
+    else if (act === 'admin') openAdmin();
+    else if (act === 'llogin') doLogin();
+    else if (act === 'lback') leaveAdmin();
+    else if (act === 'alogout') doLogout();
+    else if (act === 'refresh') { doRefresh(); }
+    else if (act === 'aback') { state.view = 'menu'; render(); }
+    else if (act === 'aopen') { syncAdmin(); state.draft.open = true; render(); }
+    else if (act === 'aclose') { syncAdmin(); state.draft.open = false; render(); }
+    else if (act === 'asadd') { syncAdmin(); state.draft.shops.push({ id: 's' + Date.now().toString(36), name: '' }); render(); var sr = app.querySelectorAll('.srow .s-name'); if (sr.length) sr[sr.length - 1].focus(); }
+    else if (act === 'asdel') { syncAdmin(); state.draft.shops.splice(Number(b.getAttribute('data-i')), 1); render(); }
+    else if (act === 'aadd') { syncAdmin(); state.draft.items.push({ id: 'i' + Date.now().toString(36), name: '', desc: '', price: 0, on: true, sid: '', img: '' }); render(); var rows = app.querySelectorAll('.arow .a-name'); if (rows.length) rows[rows.length - 1].focus(); }
+    else if (act === 'adel') { syncAdmin(); state.draft.items.splice(Number(b.getAttribute('data-i')), 1); render(); }
+    else if (act === 'aimgdel') { syncAdmin(); var di = state.draft.items[Number(b.getAttribute('data-i'))]; if (di) di.img = ''; setAdmin('ছবি সরানো হয়েছে! "প্রকাশ করুন" চাপলে কাস্টমাররা দেখবে।', 'ok'); }
+    else if (act === 'apublish') publish();
+  });
+
+  app.addEventListener('input', function (e) {
+    var id = e.target && e.target.id;
+    if (id === 'a-emin' || id === 'a-emax') {
+      var p = document.getElementById('eta-prev'), g = function (x) { var el = document.getElementById(x); return el ? el.value : ''; };
+      if (p) p.textContent = etaSentence(g('a-emin'), g('a-emax')) || 'সময় দেখানো হবে না';
+      return;
+    }
+    if (state.view === 'checkout') refreshLink();
+  });
+
+  app.addEventListener('change', async function (e) {
+    var t = e.target;
+    if (t.name === 'method') { readForm(); state.form.method = t.value; render(); return; }
+    if (t.classList && t.classList.contains('a-file')) {
+      var f = t.files && t.files[0]; if (!f) return;
+      var i = Number(t.getAttribute('data-i'));
+      if (!f.type || f.type.indexOf('image/') !== 0) { setAdmin('একটি ছবি ফাইল বেছে নিন।', 'err'); return; }
+      syncAdmin(); setAdmin('ছবি ছোট করে আপলোড হচ্ছে...', 'info');
+      try {
+        var blob = await shrink(f, 600, 0.75);
+        var du = await new Promise(function (ok, no) { var fr = new FileReader(); fr.onload = function () { ok(fr.result); }; fr.onerror = no; fr.readAsDataURL(blob); });
+        if (state.draft && state.draft.items[i]) state.draft.items[i].img = du;
+        setAdmin('ছবি যোগ হয়েছে! সব ঠিক থাকলে "প্রকাশ করুন" চাপুন।', 'ok');
+      } catch (err) { setAdmin(imgErr(err), 'err'); }
+    }
+  });
+
+  /* Home-screen shortcuts keep an old copy of the page, so every open re-reads the live menu. */
+  async function doRefresh() {
+    if (state.refreshing) return;
+    state.refreshing = true; state.rmsg = ''; render();
+    var res = await checkFresh(true);
+    if (res === 'reload') return;
+    /* The in-page check can be blocked on some phones, so fall back to loading the page again. */
+    if (res === 'fail' && !totals().cnt && state.view === 'menu') {
+      state.rmsg = 'পেজ নতুন করে লোড হচ্ছে...'; render();
+      setTimeout(function () { location.reload(); }, 400);
+      return;
+    }
+    state.refreshing = false;
+    state.rmsg = res === 'updated' ? 'মেনু নতুন করে আপডেট হয়েছে ✓' : res === 'same' ? 'আপনি সবচেয়ে নতুন মেনুই দেখছেন ✓' : 'আপডেট আনা যায়নি। ইন্টারনেট দেখে আবার চেষ্টা করুন।';
+    if (state.view === 'menu') render();
+    clearTimeout(rTimer);
+    rTimer = setTimeout(function () { state.rmsg = ''; if (state.view === 'menu') render(); }, 4500);
+  }
+  async function checkFresh(manual) {
+    var now = Date.now();
+    if (!manual && now - lastCheck < 15000) return 'skip';
+    lastCheck = now;
+    try {
+      var r = await fetch(new URL('menu.json', location.href).href + '?t=' + now, { cache: 'no-store' });
+      if (!r.ok) return 'fail';
+      var nd = norm(await r.json());
+      if (state.view === 'admin') return 'same';
+      var changed = Number(nd.v || 0) !== Number(DATA.v || 0);
+      if (changed) {
+        DATA = nd;
+        if (!DATA.open && (state.view === 'pay' || state.view === 'checkout')) { if (state.view === 'checkout') readForm(); state.view = 'menu'; render(); }
+        else if (state.view === 'checkout') { readForm(); render(); }
+        else if (state.view === 'menu' || state.view === 'pay') render();
+      }
+      return changed ? 'updated' : 'same';
+    } catch (e) { return 'fail'; }
+  }
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') checkFresh(); });
+  window.addEventListener('pageshow', function () { checkFresh(); });
+  setInterval(function () { if (document.visibilityState === 'visible') checkFresh(); }, 90000);
+
+  render();
+  checkFresh();
+
+  /* ===== অ্যাডমিন লগইন ===== */
+  var pwFails = 0;
+  var hexBytes = function (h) { var a = new Uint8Array(h.length / 2); for (var i = 0; i < a.length; i++) a[i] = parseInt(h.substr(i * 2, 2), 16); return a; };
+  var toHex = function (buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join(''); };
+  async function pwDerive(pw) {
+    var key = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveBits']);
+    var bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: hexBytes(PW_SALT), iterations: PW_ITER, hash: 'SHA-256' }, key, 256);
+    return toHex(bits);
+  }
+  /* A successful login is remembered on this phone for 30 days, or until "লগআউট". */
+  function isAuthed() {
+    if (!PW_HASH) return true;
+    try { var s = JSON.parse(localStorage.getItem('admin-ok') || 'null'); return !!s && s.h === PW_HASH.slice(0, 16) && Date.now() - s.t < 30 * 86400000; } catch (e) { return false; }
+  }
+  function openAdmin() { state.draft = JSON.parse(JSON.stringify(DATA)); state.adminMsg = ''; state.view = 'admin'; window.scrollTo(0, 0); render(); }
+  async function doLogin() {
+    if (state.lbusy) return;
+    var pe = document.getElementById('l-pass'), pass = pe ? pe.value.trim().toLowerCase() : '';
+    if (!pass) { state.lmsg = 'পাসওয়ার্ড দিন।'; render(); return; }
+    state.lbusy = true; state.lmsg = ''; render();
+    var ok = false;
+    try { ok = (await pwDerive(pass)) === PW_HASH; } catch (e) { state.lmsg = 'এই ব্রাউজারে লগইন চালানো যাচ্ছে না। অন্য ব্রাউজারে চেষ্টা করুন।'; }
+    if (!ok && !state.lmsg) { pwFails++; await new Promise(function (r) { setTimeout(r, Math.min(pwFails, 5) * 800); }); state.lmsg = 'পাসওয়ার্ড ভুল।'; }
+    state.lbusy = false;
+    if (ok) {
+      pwFails = 0;
+      try { localStorage.setItem('admin-ok', JSON.stringify({ t: Date.now(), h: PW_HASH.slice(0, 16) })); } catch (e) {}
+      state.owner = true; state.canImg = true; openAdmin();
+    } else if (state.view === 'login') render();
+  }
+  /* Leave the admin screens and go back to what customers see. */
+  function leaveAdmin() {
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    state.owner = false; state.canImg = false; state.lmsg = ''; state.view = 'menu'; window.scrollTo(0, 0); render();
+  }
+  function doLogout() { try { localStorage.removeItem('admin-ok'); } catch (e) {} leaveAdmin(); }
+  app.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target && e.target.id === 'l-pass') doLogin(); });
+
+  function checkOwner() {
+    if (location.hash === '#admin') {
+      if (isAuthed()) { if (!state.owner) { state.owner = true; state.canImg = true; if (state.view === 'menu') render(); } }
+      else if (state.view === 'menu' || state.view === 'login') { state.owner = false; state.canImg = false; state.view = 'login'; render(); }
+    } else if (state.owner || state.view === 'login') {
+      state.owner = false; state.canImg = false;
+      if (state.view === 'login' || state.view === 'admin') state.view = 'menu';
+      render();
+    }
+  }
+  window.addEventListener('hashchange', checkOwner); checkOwner();
+})();
+</script></body></html>
